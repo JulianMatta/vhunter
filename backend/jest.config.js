@@ -10,7 +10,7 @@ module.exports = {
     "^.+\\.(t|j)s$": "ts-jest"
   },
   collectCoverageFrom: [
-    "**/*.(t|j)s"
+    "src/**/*.(t|j)s"
   ],
   collectCoverage: false,
   coverageDirectory: 'coverage',
