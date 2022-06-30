@@ -10,6 +10,11 @@ test_job:
     - .test-base
   variables:
     MODULE_PATH: "backend"
+  script:
+    - echo "Npm install from $MODULE_PATH ..."
+    - npm install --prefer-offline --no-audit --progress=false
+    - echo "Running unit tests from $MODULE_PATH ..."
+    - npm run test:coverage
 
 fortify-job:  # This job runs in the publish stage.
   rules:
