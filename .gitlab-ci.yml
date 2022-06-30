@@ -5,7 +5,7 @@ include:
       - 'Jobs/backend_jobs.yml'
 
 # Test
-test_job:
+test-job:
   extends:
     - .test-base
   variables:
