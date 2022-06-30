@@ -1,0 +1,28 @@
+include:
+  - project: 'telecom-argentina/cio/club-personal/devops/cicd/templates'
+    ref: master
+    file:
+      - 'Jobs/backend_jobs.yml'
+
+# Test
+test_job:
+  extends:
+    - .test-base
+  variables:
+    MODULE_PATH: "backend"
+
+fortify-job:  # This job runs in the publish stage.
+  rules:
+    - if: $CI_COMMIT_BRANCH == "none"
+
+deploy-dev:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "none"
+
+deploy-test:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "none"
+
+deploy-prod:
+  rules:
+    - if: $CI_COMMIT_BRANCH == "none"
