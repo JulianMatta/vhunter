@@ -11,6 +11,7 @@ test_job:
   variables:
     MODULE_PATH: "backend"
   script:
+    - cd $MODULE_PATH
     - echo "Npm install from $MODULE_PATH ..."
     - npm install --prefer-offline --no-audit --progress=false
     - echo "Running unit tests from $MODULE_PATH ..."
