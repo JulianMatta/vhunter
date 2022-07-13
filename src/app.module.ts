@@ -36,4 +36,4 @@ import { VhunterController } from './vhunter/vhunter.controller';
   ],
   controllers: [VhunterController],
 })
-export class AppModule { }
+export class AppModule {}

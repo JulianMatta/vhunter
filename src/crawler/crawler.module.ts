@@ -9,8 +9,16 @@ import { VersionsService } from 'src/versions/versions.service';
 import { ComponentsRepository } from 'src/components/components.repository';
 
 @Module({
-  imports: [TypeOrmExModule.forCustomRepository([VersionsRepository]), TypeOrmExModule.forCustomRepository([ComponentsRepository])],
-  providers: [CrawlerService, ScrapperService, ComponentsService, VersionsService],
+  imports: [
+    TypeOrmExModule.forCustomRepository([VersionsRepository]),
+    TypeOrmExModule.forCustomRepository([ComponentsRepository]),
+  ],
+  providers: [
+    CrawlerService,
+    ScrapperService,
+    ComponentsService,
+    VersionsService,
+  ],
   controllers: [CrawlerController],
 })
-export class CrawlerModule { }
+export class CrawlerModule {}

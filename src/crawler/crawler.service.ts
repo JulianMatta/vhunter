@@ -1,11 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
-import { ComponentsService } from 'src/components/components.service';
-import { Components } from 'src/components/dto/components.entity';
-import { crawlerTimeConfig } from 'src/components/dto/crawlerTime.enum';
-import { ScrapperService } from 'src/scrapper/scrapper.service';
-import { CreateVersionDto } from 'src/versions/dto/create-versions-dto';
-import { VersionsService } from 'src/versions/versions.service';
+import { ComponentsService } from '../components/components.service';
+import { Components } from '../components/dto/components.entity';
+import { crawlerTimeConfig } from '../components/dto/crawlerTime.enum';
+import { ScrapperService } from '../scrapper/scrapper.service';
+import { CreateVersionDto } from '../versions/dto/create-versions-dto';
+import { VersionsService } from '../versions/versions.service';
 
 @Injectable()
 export class CrawlerService {
@@ -13,7 +13,7 @@ export class CrawlerService {
     private scrapperService: ScrapperService,
     private componentService: ComponentsService,
     private versionService: VersionsService,
-  ) { }
+  ) {}
   private readonly logger = new Logger(CrawlerService.name);
 
   // @Cron(CronExpression.EVERY_10_SECONDS)
@@ -22,7 +22,7 @@ export class CrawlerService {
   async executeCron() {
     this.logger.debug('Mensaje de inicio ONEHOUR ---------------');
     const components = await this.componentService.getComponentByTypeCrawler(
-      crawlerTimeConfig.ONEHOUR,
+      crawlerTimeConfig.ONEHOUR
     );
     this.getVersionEachComponent(components);
   }
@@ -30,21 +30,27 @@ export class CrawlerService {
   @Cron(CronExpression.EVERY_3_HOURS)
   async executeCron2() {
     this.logger.debug('Mensaje de inicio THREEHOUR ---------------');
-    const components = await this.componentService.getComponentByTypeCrawler(crawlerTimeConfig.THREEHOUR);
+    const components = await this.componentService.getComponentByTypeCrawler(
+      crawlerTimeConfig.THREEHOUR
+    );
     this.getVersionEachComponent(components);
   }
 
   @Cron(CronExpression.EVERY_6_HOURS)
   async executeCron3() {
     this.logger.debug('Mensaje de inicio SIXHOUR ---------------');
-    const components = await this.componentService.getComponentByTypeCrawler(crawlerTimeConfig.SIXHOUR);
+    const components = await this.componentService.getComponentByTypeCrawler(
+      crawlerTimeConfig.SIXHOUR
+    );
     this.getVersionEachComponent(components);
   }
 
   @Cron(CronExpression.EVERY_DAY_AT_4AM)
   async executeCron4() {
     this.logger.debug('Mensaje de inicio ONEDAY ---------------');
-    const components = await this.componentService.getComponentByTypeCrawler(crawlerTimeConfig.ONEDAY);
+    const components = await this.componentService.getComponentByTypeCrawler(
+      crawlerTimeConfig.ONEDAY
+    );
     this.getVersionEachComponent(components);
   }
 

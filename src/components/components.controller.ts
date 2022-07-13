@@ -1,23 +1,27 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ScrapperService } from 'src/scrapper/scrapper.service';
+import { ScrapperService } from '../scrapper/scrapper.service';
 import { ComponentsService } from './components.service';
 import { Components } from './dto/components.entity';
 import { CreateComponentDto } from './dto/create-components-dto';
 
 @Controller('components')
 export class ComponentsController {
-    constructor(private componentService: ComponentsService, private scrapperService: ScrapperService) { }
+  constructor(
+    private componentService: ComponentsService,
+    private scrapperService: ScrapperService,
+  ) {}
 
-    @Post()
-    async create(@Body() createComponentDto: CreateComponentDto) {
-        const version = await this.scrapperService.selectorComponentType(createComponentDto.versionURL, createComponentDto.componentType);
-        return this.componentService.create(createComponentDto, version.toString());
-    }
+  @Post()
+  async create(@Body() createComponentDto: CreateComponentDto) {
+    const version = await this.scrapperService.selectorComponentType(
+      createComponentDto.versionURL,
+      createComponentDto.componentType,
+    );
+    return this.componentService.create(createComponentDto, version.toString());
+  }
 
-    @Get('/')
-    async getAllComponents(): Promise<Components[]> {
-        return await this.componentService.getAllComponent();
-    }
-};
-
-
+  @Get('/')
+  async getAllComponents(): Promise<Components[]> {
+    return await this.componentService.getAllComponent();
+  }
+}

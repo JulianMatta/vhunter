@@ -7,8 +7,13 @@ import { ComponentsRepository } from './components.repository';
 import { ComponentsService } from './components.service';
 
 @Module({
-  imports: [TypeOrmExModule.forCustomRepository([ComponentsRepository, VersionsRepository])],
+  imports: [
+    TypeOrmExModule.forCustomRepository([
+      ComponentsRepository,
+      VersionsRepository,
+    ]),
+  ],
   controllers: [ComponentsController],
   providers: [ComponentsService, ScrapperService],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}
