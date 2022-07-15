@@ -27,6 +27,9 @@ const mockComponentsService = () => ({
     },
   ],
 });
+
+// VERSION 1
+
 // let app: INestApplication;
 // let componentsService = { findAll: () => ['test'] };
 // const MIURL = 'http://localhost:3000/components';
@@ -52,6 +55,8 @@ const mockComponentsService = () => ({
 //     await app.close();
 //   });
 // });
+
+// VERSION 2
 
 let app: INestApplication;
 let componentsService = { findAll: () => ['test'] };
@@ -87,6 +92,7 @@ describe('GET Components', () => {
   });
 });
 
+// VERSION 3
 /*
 // Import external modules
 import { NestFactory } from '@nestjs/core';
