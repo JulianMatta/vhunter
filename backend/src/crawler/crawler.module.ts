@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { CrawlerService } from './crawler.service';
-import { TypeOrmExModule } from 'src/databaseCustomRepository/typeorm-ex.module';
+import { TypeOrmExModule } from '../databaseCustomRepository/typeorm-ex.module';
 import { VersionsRepository } from '../versions/versions.repository';
 import { CrawlerController } from './crawler.controller';
-import { ScrapperService } from 'src/scrapper/scrapper.service';
-import { ComponentsService } from 'src/components/components.service';
-import { VersionsService } from 'src/versions/versions.service';
-import { ComponentsRepository } from 'src/components/components.repository';
+import { ScrapperService } from '../scrapper/scrapper.service';
+import { ComponentsService } from '../components/components.service';
+import { VersionsService } from '../versions/versions.service';
+import { ComponentsRepository } from '../components/components.repository';
 
 @Module({
   imports: [

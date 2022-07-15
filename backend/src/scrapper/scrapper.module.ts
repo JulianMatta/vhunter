@@ -2,7 +2,7 @@
 import { Module } from '@nestjs/common';
 import { ScrapperController } from './scrapper.controller';
 import { ScrapperService } from './scrapper.service';
-import { TypeOrmExModule } from 'src/databaseCustomRepository/typeorm-ex.module';
+import { TypeOrmExModule } from '../databaseCustomRepository/typeorm-ex.module';
 import { VersionsRepository } from '../versions/versions.repository';
 
 @Module({
@@ -10,4 +10,4 @@ import { VersionsRepository } from '../versions/versions.repository';
   controllers: [ScrapperController],
   providers: [ScrapperService],
 })
-export class ScrapperModule { }
+export class ScrapperModule {}
