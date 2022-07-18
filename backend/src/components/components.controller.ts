@@ -1,8 +1,10 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common';
 import { ScrapperService } from '../scrapper/scrapper.service';
 import { ComponentsService } from './components.service';
 import { Components } from './dto/components.entity';
 import { CreateComponentDto } from './dto/create-components-dto';
+import { AuthGuard } from '@nestjs/passport';
+import { AuthController } from '../auth/auth.controller';
 
 @Controller('components')
 export class ComponentsController {
@@ -12,6 +14,7 @@ export class ComponentsController {
   ) {}
 
   @Post()
+  @UseGuards(AuthGuard('jwt'))
   async create(@Body() createComponentDto: CreateComponentDto) {
     const version = await this.scrapperService.selectorComponentType(
       createComponentDto.versionURL,
