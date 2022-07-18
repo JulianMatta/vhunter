@@ -4,6 +4,6 @@ import { Controller, Get } from '@nestjs/common';
 export class VhunterController {
   @Get('/')
   versionado(): string {
-    return '1.0.9';
+    return '1.0.11';
   }
 }
