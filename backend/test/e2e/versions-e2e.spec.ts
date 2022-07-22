@@ -8,13 +8,11 @@ import { get } from 'http';
 describe('AppController (e2e)', () => {
   let app: INestApplication;
   const dataResponse = [
+    'versionID',
+    'componentID',
     'productID',
-    'productName',
-    'productCreateDate',
-    'productCreateUser',
-    'productUpdateDate',
-    'productUpdateUser',
-    'productStatus',
+    'versionCode',
+    'versionDate',
   ];
 
   beforeAll(async () => {
@@ -26,9 +24,9 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/products (GET)', () => {
+  it('/versions (GET)', () => {
     return request(app.getHttpServer())
-      .get('/products')
+      .get('/versions')
       .then((result) => {
         expect(result.statusCode).toEqual(200);
         if (!result.body[0]) {
@@ -39,29 +37,30 @@ describe('AppController (e2e)', () => {
       });
   });
 
-  it('/products/:id (GET)', () => {
+  it('/versions/lastVersion/:componentID (GET)', () => {
     return request(app.getHttpServer())
-      .get('/products/d6059673-0202-4c17-bc61-3ca57a5ea6e7')
+      .get('/versions/lastVersion/1effdabe-ba72-4569-8046-fd5cab3f0caf')
       .then((result) => {
-        const resultParsed = JSON.stringify(result.body);
-        const rescataid = result.body.productID;
-        if (resultParsed.length > 0) {    //hay que generar EN EL CODIGO una respuesta para indicar que la BD está vacía
-          expect(result.statusCode).toBe(200);
-          expect(result.body).toBeDefined();
-          expect(resultParsed.length > 0).toBeTruthy();
+        if (result.statusCode != 200) { //hay que generar EN EL CODIGO una respuesta para indicar que la BD está vacía
         }
         else {
+          expect(result.statusCode).toEqual(200);
+          expect(Object.keys(result.body)).toEqual([
+            'versionCode',
+            'versionDate',
+          ]);
         }
       });
-  });
+  })
 });
 
-
-// it('/products (POST)', () => {
-//   return request(app.getHttpServer())
-//     .post('/components')
-//     .then((result) => {
-//       expect(result.statusCode).toEqual(200);
-//       expect(Object.keys(result.body[0])).toEqual(dataResponse);
-//     });
-// });
+/*
+it('/products (POST)', () => {
+  return request(app.getHttpServer())
+    .post('/components')
+    .then((result) => {
+      expect(result.statusCode).toEqual(200);
+      expect(Object.keys(result.body[0])).toEqual(dataResponse);
+    });
+});
+*/
