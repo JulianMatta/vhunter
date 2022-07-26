@@ -1,9 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication, Next } from '@nestjs/common';
+import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../../src/app.module';
-import { nextTick } from 'process';
-import { get } from 'http';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -32,8 +30,7 @@ describe('AppController (e2e)', () => {
       .then((result) => {
         expect(result.statusCode).toEqual(200);
         if (!result.body[0]) {
-        }
-        else {
+        } else {
           expect(Object.keys(result.body[0])).toEqual(dataResponse);
         }
       });
@@ -45,23 +42,28 @@ describe('AppController (e2e)', () => {
       .then((result) => {
         const resultParsed = JSON.stringify(result.body);
         const rescataid = result.body.productID;
-        if (resultParsed.length > 0) {    //hay que generar EN EL CODIGO una respuesta para indicar que la BD está vacía
+        if (resultParsed.length > 0) {
+          //hay que generar EN EL CODIGO una respuesta para indicar que la BD está vacía
           expect(result.statusCode).toBe(200);
           expect(result.body).toBeDefined();
           expect(resultParsed.length > 0).toBeTruthy();
-        }
-        else {
+        } else {
         }
       });
   });
+
+  it('/products (POST) ', () => {
+    const product = {
+      productName: 'Vhunter',
+      productCreateUser: 'Juan',
+      productStatus: true,
+    };
+
+    return request(app.getHttpServer())
+      .post('/products')
+      .send(product)
+      .then((result) => {
+        expect(result.statusCode).toEqual(201);
+      });
+  });
 });
-
-
-// it('/products (POST)', () => {
-//   return request(app.getHttpServer())
-//     .post('/components')
-//     .then((result) => {
-//       expect(result.statusCode).toEqual(200);
-//       expect(Object.keys(result.body[0])).toEqual(dataResponse);
-//     });
-// });

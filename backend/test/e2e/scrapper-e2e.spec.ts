@@ -25,8 +25,7 @@ describe('AppController (e2e)', () => {
       .then((result) => {
         expect(result.statusCode).toEqual(200);
         if (!result.text) {
-        }
-        else {
+        } else {
           expect(result.text).toContain('1.0.6'); //Debemos revisar qué está mandando el scrapper
         }
       });
