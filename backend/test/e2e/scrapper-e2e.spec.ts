@@ -17,11 +17,7 @@ describe('AppController (e2e)', () => {
   jest.setTimeout(20000);
   it('/scrapper (GET)', () => {
     return request(app.getHttpServer())
-      .get('/scrapper')
-      .send({
-        versionURL: 'https://vhunter2022.herokuapp.com/vhunter',
-        componentType: 'WEB',
-      })
+      .get('/scrapper?versionURL=https://vhunter2022.herokuapp.com/vhunter&componentType=WEB')
       .then((result) => {
         expect(result.statusCode).toEqual(200);
         if (!result.text) {

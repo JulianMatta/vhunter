@@ -41,7 +41,7 @@ describe('AppController (e2e)', () => {
 
   it('/products/:id (GET)', () => {
     return request(app.getHttpServer())
-      .get('/products/d6059673-0202-4c17-bc61-3ca57a5ea6e7')
+      .get('/products/8ca2aa43-ed3a-4cc7-9f6f-7757c604920a')
       .then((result) => {
         const resultParsed = JSON.stringify(result.body);
         const rescataid = result.body.productID;

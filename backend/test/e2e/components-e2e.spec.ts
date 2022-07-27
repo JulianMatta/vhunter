@@ -44,6 +44,7 @@ describe('AppController (e2e)', () => {
       });
   });
 */
+  jest.setTimeout(20000);
   it('/components (POST) ', () => {
     const component = {
       productID: '930808ab-89fe-4cb9-873c-67b238174e5b',
