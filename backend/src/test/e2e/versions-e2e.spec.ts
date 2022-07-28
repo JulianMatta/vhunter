@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, Next } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from '../../src/app.module';
+import { AppModule } from '../../app.module';
 import { nextTick } from 'process';
 import { get } from 'http';
 
@@ -52,14 +52,3 @@ describe('AppController (e2e)', () => {
       });
   });
 });
-
-/* DEBE ESTAR EL POST DE VERSION????????
-it('/products (POST)', () => {
-  return request(app.getHttpServer())
-    .post('/components')
-    .then((result) => {
-      expect(result.statusCode).toEqual(200);
-      expect(Object.keys(result.body[0])).toEqual(dataResponse);
-    });
-});
-*/

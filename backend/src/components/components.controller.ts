@@ -11,7 +11,7 @@ export class ComponentsController {
   constructor(
     private componentService: ComponentsService,
     private scrapperService: ScrapperService,
-  ) {}
+  ) { }
 
   @Post()
   // @UseGuards(AuthGuard('jwt'))

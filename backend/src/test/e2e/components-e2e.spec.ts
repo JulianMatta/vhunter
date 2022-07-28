@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from '../../src/app.module';
+import { AppModule } from '../../app.module';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -44,6 +44,7 @@ describe('AppController (e2e)', () => {
       });
   });
 */
+  jest.setTimeout(20000);
   it('/components (POST) ', () => {
     const component = {
       productID: '930808ab-89fe-4cb9-873c-67b238174e5b',

@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from '../../src/app.module';
+import { AppModule } from '../../app.module';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -24,6 +24,7 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
+  jest.setTimeout(20000);
   it('/products (GET)', () => {
     return request(app.getHttpServer())
       .get('/products')
@@ -55,13 +56,12 @@ describe('AppController (e2e)', () => {
       });
   });
 
-  it('/products (POST) ', () => {
+  it('/products (POST)', () => {
     const product = {
-      productName: 'Vhunter',
+      productName: 'Flow',
       productCreateUser: 'Juan',
       productStatus: true,
     };
-
     return request(app.getHttpServer())
       .post('/products')
       .send(product)
