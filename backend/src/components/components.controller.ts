@@ -14,11 +14,7 @@ export class ComponentsController {
   ) { }
 
   @Post()
-<<<<<<< HEAD
-  //@UseGuards(AuthGuard('jwt'))
-=======
   // @UseGuards(AuthGuard('jwt'))
->>>>>>> a63e009a4c25262704206102f0293a44d9ad83ec
   async create(@Body() createComponentDto: CreateComponentDto) {
     const version = await this.scrapperService.selectorComponentType(
       createComponentDto.versionURL,
