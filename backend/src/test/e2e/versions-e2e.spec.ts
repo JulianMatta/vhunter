@@ -36,12 +36,18 @@ describe('AppController (e2e)', () => {
       });
   });
 
-  it('/versions/lastVersion/:componentID (GET)', () => {
+  it('/versions/lastVersion/:componentID (GET)', async () => {
+    const componentID = await request(app.getHttpServer())
+      .get('/versions')
+      .then((result) => {
+        const idFound = result.body[0].componentID;
+        return idFound;
+      });
+
     return request(app.getHttpServer())
-      .get('/versions/lastVersion/1effdabe-ba72-4569-8046-fd5cab3f0caf')
+      .get('/versions/' + componentID)
       .then((result) => {
         if (result.statusCode != 200) {
-          //hay que generar EN EL CODIGO una respuesta para indicar que la BD está vacía
         } else {
           expect(result.statusCode).toEqual(200);
           expect(Object.keys(result.body)).toEqual([

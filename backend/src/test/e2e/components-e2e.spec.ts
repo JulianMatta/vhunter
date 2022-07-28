@@ -33,18 +33,20 @@ describe('AppController (e2e)', () => {
     app = moduleFixture.createNestApplication();
     await app.init();
   });
-  /*
+
+  jest.setTimeout(20000);
   it('/components (GET)', () => {
     return request(app.getHttpServer())
       .get('/components')
       .then((result) => {
         expect(result.statusCode).toEqual(200);
-        expect(Object.keys(result.body[0])).toEqual(dataResponse);
-        //   Agregar condicional con BD vacia
+        if (!result.body[0]) {
+        } else {
+          expect(Object.keys(result.body[0])).toEqual(dataResponse);
+        }
       });
   });
-*/
-  jest.setTimeout(20000);
+
   it('/components (POST) ', () => {
     const component = {
       productID: '930808ab-89fe-4cb9-873c-67b238174e5b',

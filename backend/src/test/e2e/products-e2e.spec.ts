@@ -24,7 +24,7 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  jest.setTimeout(20000);
+  //jest.setTimeout(20000);
   it('/products (GET)', () => {
     return request(app.getHttpServer())
       .get('/products')
