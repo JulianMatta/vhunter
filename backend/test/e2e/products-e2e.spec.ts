@@ -36,18 +36,21 @@ describe('AppController (e2e)', () => {
       });
   });
 
-  it('/products/:id (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/products/d6059673-0202-4c17-bc61-3ca57a5ea6e7')
+  it('/products/:id (GET)', async () => {
+    const productID = await request(app.getHttpServer())
+      .get('/products')
       .then((result) => {
-        const resultParsed = JSON.stringify(result.body);
-        const rescataid = result.body.productID;
-        if (resultParsed.length > 0) {
-          //hay que generar EN EL CODIGO una respuesta para indicar que la BD está vacía
-          expect(result.statusCode).toBe(200);
-          expect(result.body).toBeDefined();
-          expect(resultParsed.length > 0).toBeTruthy();
+        const idFound = result.body[0].productID;
+        return idFound;
+      });
+
+    return request(app.getHttpServer())
+      .get('/products/' + productID)
+      .then((result) => {
+        expect(result.statusCode).toBe(200);
+        if (!result.body[0]) {
         } else {
+          expect(Object.keys(result.body[0])).toEqual(dataResponse);
         }
       });
   });

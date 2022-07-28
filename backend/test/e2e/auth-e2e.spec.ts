@@ -26,6 +26,8 @@ describe('AppController (e2e)', () => {
       .post('/auth/signin')
       .send(credenciales)
       .then((result) => {
+        const token = JSON.stringify(result.body).split('"', 4);
+        console.log(token[3]);
         expect(result.statusCode).toEqual(201);
       });
   });
