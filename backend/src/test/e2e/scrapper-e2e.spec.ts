@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, Next } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from '../../src/app.module';
+import { AppModule } from '../../app.module';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -21,7 +21,8 @@ describe('AppController (e2e)', () => {
       .then((result) => {
         expect(result.statusCode).toEqual(200);
         if (!result.text) {
-        } else {
+        }
+        else {
           expect(result.text).toContain('1.0.6'); //Debemos revisar qué está mandando el scrapper
         }
       });
