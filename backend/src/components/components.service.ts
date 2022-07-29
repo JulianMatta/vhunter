@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ComponentsRepository } from './components.repository';
 import { Components } from './dto/components.entity';
-//import { ComponentTypeStatus } from './dto/componentType.enum';
 import { crawlerTimeConfig } from './dto/crawlerTime.enum';
 import { CreateComponentDto } from './dto/create-components-dto';
 import { Logger } from '@nestjs/common';

@@ -1,14 +1,12 @@
-/* eslint-disable prettier/prettier */
-import { CrawlerService } from './crawler.service';
+import { CrawlerService } from '../../crawler/crawler.service';
 import { Test } from '@nestjs/testing';
-import { ScrapperService } from '../scrapper/scrapper.service';
-import { ComponentsService } from '../components/components.service';
-import { VersionsService } from '../versions/versions.service';
-import { VersionsRepository } from '../versions/versions.repository';
-import { crawlerTimeConfig } from '../components/dto/crawlerTime.enum';
+import { ScrapperService } from '../../scrapper/scrapper.service';
+import { ComponentsService } from '../../components/components.service';
+import { VersionsService } from '../../versions/versions.service';
+import { VersionsRepository } from '../../versions/versions.repository';
+import { crawlerTimeConfig } from '../../components/dto/crawlerTime.enum';
 
 const mockComponentsService = () => ({
-  //getComponentByTypeCrawler: jest.fn(),
   getComponentByTypeCrawler: () => [
     {
       componentID: '2d3ea7aa-d899-4a00-b74d-6465adc4d0c2',

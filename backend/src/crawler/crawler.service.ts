@@ -16,13 +16,11 @@ export class CrawlerService {
   ) {}
   private readonly logger = new Logger(CrawlerService.name);
 
-  // @Cron(CronExpression.EVERY_10_SECONDS)
-
   @Cron(CronExpression.EVERY_HOUR)
   async executeCron() {
     this.logger.debug('Mensaje de inicio ONEHOUR ---------------');
     const components = await this.componentService.getComponentByTypeCrawler(
-      crawlerTimeConfig.ONEHOUR
+      crawlerTimeConfig.ONEHOUR,
     );
     this.getVersionEachComponent(components);
   }
@@ -31,7 +29,7 @@ export class CrawlerService {
   async executeCron2() {
     this.logger.debug('Mensaje de inicio THREEHOUR ---------------');
     const components = await this.componentService.getComponentByTypeCrawler(
-      crawlerTimeConfig.THREEHOUR
+      crawlerTimeConfig.THREEHOUR,
     );
     this.getVersionEachComponent(components);
   }
@@ -40,7 +38,7 @@ export class CrawlerService {
   async executeCron3() {
     this.logger.debug('Mensaje de inicio SIXHOUR ---------------');
     const components = await this.componentService.getComponentByTypeCrawler(
-      crawlerTimeConfig.SIXHOUR
+      crawlerTimeConfig.SIXHOUR,
     );
     this.getVersionEachComponent(components);
   }
@@ -49,7 +47,7 @@ export class CrawlerService {
   async executeCron4() {
     this.logger.debug('Mensaje de inicio ONEDAY ---------------');
     const components = await this.componentService.getComponentByTypeCrawler(
-      crawlerTimeConfig.ONEDAY
+      crawlerTimeConfig.ONEDAY,
     );
     this.getVersionEachComponent(components);
   }
