@@ -6,9 +6,9 @@ import { ProductsService } from './products.service';
 
 @Controller('products')
 export class ProductsController {
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService) {}
   @Post()
-  //@UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'))
   create(@Body() createProductDto: CreateProductDto) {
     return this.productsService.create(createProductDto);
   }

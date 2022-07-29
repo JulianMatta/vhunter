@@ -56,14 +56,28 @@ describe('AppController (e2e)', () => {
       });
   });
 
-  it('/products (POST)', () => {
+  it('/products (POST)', async () => {
     const product = {
-      productName: 'Flow',
+      productName: 'REFLOWCONJWT',
       productCreateUser: 'Juan',
       productStatus: true,
     };
+    const credenciales = {
+      username: 'admin',
+      password: 'admin123',
+    };
+    const accessToken = await request(app.getHttpServer())
+      .post('/auth/signin')
+      .send(credenciales)
+      .then((result) => {
+        const accessToken = result.body.accessToken;
+        return accessToken;
+      });
     return request(app.getHttpServer())
       .post('/products')
+      .set({
+        Authorization: 'Bearer ' + accessToken,
+      })
       .send(product)
       .then((result) => {
         expect(result.statusCode).toEqual(201);
