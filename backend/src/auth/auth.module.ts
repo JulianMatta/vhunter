@@ -6,11 +6,16 @@ import { UsersRepository } from './users.repository';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     PassportModule.register({ defaultStrategy: 'jwt' }),
+
     JwtModule.register({
-      secret: 'secret123',
+      secret: process.env.SECRETJWT,
       signOptions: {
         expiresIn: 3600,
       },
