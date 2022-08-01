@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -13,7 +14,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     private usersRepository: UsersRepository,
   ) {
     super({
-      secretOrKey: process.env.SECRETJWT,
+      secretOrKey: 'secret1234',
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     });
   }
