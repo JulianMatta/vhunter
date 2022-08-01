@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as puppeteer from 'puppeteer';
@@ -31,20 +30,19 @@ export class ScrapperService {
   // view-source:https://web.flow.com.ar/auth/v2/revision
   // view-source:https://flow.com.ar/
   async WebPublic(URL: string): Promise<any> {
-    const browser = await puppeteer.launch({ 
-      headless: true 
+    const browser = await puppeteer.launch({
+      headless: true,
     });
     const page = await browser.newPage();
     const results = await page
       .goto(`view-source:${URL}`, {
-        waitUntil: 'networkidle2'
+        waitUntil: 'networkidle2',
       })
-        .then(async () => {
+      .then(async () => {
         const results = await page.evaluate(() => {
           const lineas = document.body.innerText.split('\n');
           return lineas[1];
         });
-        // console.log(results);
         return results;
       })
       .catch(() => {
@@ -72,7 +70,7 @@ export class ScrapperService {
         return await page
           .click('.VMq4uf button')
           .then(async () => {
-            await page.waitForTimeout(3000); //1000
+            await page.waitForTimeout(3000);
             return await page.evaluate(() => {
               const dataVersion = document.querySelector('.reAt0')?.textContent;
               return dataVersion;
