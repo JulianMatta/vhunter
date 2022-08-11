@@ -4,8 +4,11 @@ import { Controller, Get } from '@nestjs/common';
 export class VhunterController {
   @Get('/')
   versionado(): string {
-    return '1.0.11';
     // sacarlo del packjson
+    /*  import fs from "fs";
+var json = JSON.parse(fs.readFileSync("package.json", "utf8"));
+console.log(json.version);*/
+    return '1.0.11';
   }
   @Get('/ping')
   ping(): string {

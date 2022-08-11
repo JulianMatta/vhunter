@@ -4,17 +4,16 @@ import { ComponentsService } from './components.service';
 import { Components } from './dto/components.entity';
 import { CreateComponentDto } from './dto/create-components-dto';
 import { AuthGuard } from '@nestjs/passport';
-import { AuthController } from '../auth/auth.controller';
 
 @Controller('components')
 export class ComponentsController {
   constructor(
     private componentService: ComponentsService,
     private scrapperService: ScrapperService,
-  ) { }
+  ) {}
 
   @Post()
-  // @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'))
   async create(@Body() createComponentDto: CreateComponentDto) {
     const version = await this.scrapperService.selectorComponentType(
       createComponentDto.versionURL,
